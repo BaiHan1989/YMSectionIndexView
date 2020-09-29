@@ -308,7 +308,7 @@
 #pragma mark - YMSectionIndexViewDelegate
 - (void)sectionIndexView:(YMSectionIndexView *)sectionIndexView sectionTitle:(NSString *)title atIndex:(NSInteger)index {
     
-    NSLog(@"title - %@ - index - %zd", title, index);
+//    NSLog(@"title - %@ - index - %zd", title, index);
     
     // 滚动tableView
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:index];

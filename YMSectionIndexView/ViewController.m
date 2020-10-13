@@ -267,6 +267,11 @@
     sectionIndexView.frame = CGRectMake(self.view.bounds.size.width - 20, (self.view.bounds.size.height - 500) / 2, 20, 500);
     [self.view addSubview:sectionIndexView];
     
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(100, 100, 50, 50)];
+    view.layer.cornerRadius = 25;
+    view.backgroundColor = [UIColor orangeColor];
+    [self.view addSubview:view];
+    
 }
 
 #pragma mark - UITableViewDataSource, UITableViewDelegate

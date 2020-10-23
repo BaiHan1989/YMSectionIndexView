@@ -12,6 +12,7 @@
 @property (nonatomic, strong) NSArray *brands;
 @property (nonatomic, strong) NSArray *titles;
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) YMSectionIndexView *sectionIndexView;
 @end
 
 @implementation ViewController
@@ -238,8 +239,7 @@
                 ],
             }
         ];
-        
-        
+
         NSMutableArray *temp = [NSMutableArray array];
         for (NSDictionary *dict in self.brands) {
             NSString *letter = dict[@"letter"];
@@ -247,26 +247,26 @@
         }
         self.titles = temp.copy;
     }
-    
+
     return self;
 }
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 44, self.view.bounds.size.width, self.view.bounds.size.height)];
+
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 88, self.view.bounds.size.width, self.view.bounds.size.height - 88)];
+    self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     self.tableView.backgroundColor = [UIColor whiteColor];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     [self.view addSubview:self.tableView];
-    
-    YMSectionIndexView *sectionIndexView = [[YMSectionIndexView alloc] initWithTitles:self.titles];
-    sectionIndexView.delegate = self;
-    sectionIndexView.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.8];
-    sectionIndexView.frame = CGRectMake(self.view.bounds.size.width - 20, (self.view.bounds.size.height - 500) / 2, 20, 500);
-    [self.view addSubview:sectionIndexView];
-    
+
+    self.sectionIndexView = [[YMSectionIndexView alloc] initWithTitles:self.titles];
+    self.sectionIndexView.delegate = self;
+    self.sectionIndexView.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.8];
+    self.sectionIndexView.frame = CGRectMake(self.view.bounds.size.width - 20, (self.view.bounds.size.height - 500) / 2, 20, 500);
+    [self.view addSubview:self.sectionIndexView];
 }
 
 #pragma mark - UITableViewDataSource, UITableViewDelegate
@@ -292,9 +292,7 @@
     return 25;
 }
 
-
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-
     NSDictionary *brandDict = self.brands[section];
     UIView *letterView = [[UIView alloc] init];
     letterView.backgroundColor = [UIColor lightGrayColor];
@@ -305,13 +303,21 @@
     return letterView;
 }
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    // 获取indexPath
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:scrollView.contentOffset];
+//    NSLog(@"%zd - %zd", indexPath.section, indexPath.row);
+
+    [self.sectionIndexView updatePostionWithIndexPath:indexPath];
+}
+
 #pragma mark - YMSectionIndexViewDelegate
 - (void)sectionIndexView:(YMSectionIndexView *)sectionIndexView sectionTitle:(NSString *)title atIndex:(NSInteger)index {
-    
 //    NSLog(@"title - %@ - index - %zd", title, index);
-    
+
     // 滚动tableView
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:index];
     [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
 }
+
 @end

@@ -23,6 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithTitles:(NSArray <NSString *>*)titles;
 @property (nonatomic, weak) id <YMSectionIndexViewDelegate> delegate;
 
+- (void)updatePostionWithIndexPath:(NSIndexPath *)indexPath;
+
 @end
 
 NS_ASSUME_NONNULL_END

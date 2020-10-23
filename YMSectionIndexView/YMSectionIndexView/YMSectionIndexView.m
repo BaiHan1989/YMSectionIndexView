@@ -36,7 +36,6 @@
     for (NSInteger i = 0; i < _titles.count; i++) {
         UILabel *titleLabel = self.subviews[i];
         titleLabel.frame = CGRectMake(0, i * titleHeight, titleHeight, titleHeight);
-        titleLabel.transform = CGAffineTransformMakeScale(0.8, 0.8);
         titleLabel.layer.cornerRadius = titleHeight * 0.5;
         titleLabel.layer.masksToBounds = YES;
     }
@@ -125,19 +124,10 @@
     NSInteger index = [self getSectionIndexWithTapPoint:point];
     NSString *title = _titles[index];
     // 获取到选中的label
-    UILabel *currentTitleLabel = self.subviews[index];
-    currentTitleLabel.backgroundColor = [UIColor blackColor];
-    currentTitleLabel.textColor = [UIColor whiteColor];
-
-    if (self.lastIndex != index) {
-        [self addFeedbackGenerator];
-        UILabel *lastTitleLable = self.subviews[self.lastIndex];
-        lastTitleLable.backgroundColor = [UIColor clearColor];
-        lastTitleLable.textColor = [UIColor blackColor];
-        self.lastIndex = index;
-    }
-
+    
+    [self setLabelSelectedWithIndex:index needFeedback:YES];
     if (self.delegate && [self.delegate respondsToSelector:@selector(sectionIndexView:sectionTitle:atIndex:)]) {
+        
         [self.delegate sectionIndexView:self sectionTitle:title atIndex:index];
     }
     
@@ -161,5 +151,31 @@
     } completion:^(BOOL finished) {
         self.indexView.hidden = YES;
     }];
+}
+
+- (void)updatePostionWithIndexPath:(NSIndexPath *)indexPath {
+    
+    // 防止滚动时候乱跳
+    if (indexPath.section == 0 && indexPath.row == 0) {
+        return;
+    }
+    NSInteger index = indexPath.section;
+    [self setLabelSelectedWithIndex:index needFeedback:NO];
+}
+
+
+- (void)setLabelSelectedWithIndex:(NSInteger)index needFeedback:(BOOL)isNeed {
+    UILabel *currentTitleLabel = self.subviews[index];
+    currentTitleLabel.backgroundColor = [UIColor blackColor];
+    currentTitleLabel.textColor = [UIColor whiteColor];
+    if (self.lastIndex != index) {
+        if (isNeed) {
+            [self addFeedbackGenerator];
+        }
+        UILabel *lastTitleLable = self.subviews[self.lastIndex];
+        lastTitleLable.backgroundColor = [UIColor clearColor];
+        lastTitleLable.textColor = [UIColor blackColor];
+        self.lastIndex = index;
+    }
 }
 @end

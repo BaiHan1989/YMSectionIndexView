@@ -11,6 +11,7 @@
 
 @property (nonatomic, strong) NSArray *titles;
 @property (nonatomic, assign) NSInteger lastIndex; //!< 上次选中的Index
+@property (nonatomic, strong) UIView *indexView;
 
 @end
 
@@ -35,6 +36,8 @@
         UILabel *titleLabel = self.subviews[i];
         titleLabel.frame = CGRectMake(0, i * titleHeight, self.bounds.size.width, titleHeight);
     }
+    
+    self.indexView.frame = CGRectMake(-self.bounds.size.width - 50, 0, 50, 50);
 }
 
 #pragma mark - Actions
@@ -49,12 +52,20 @@
     if (CGRectContainsPoint(self.frame, newPoint)) {
         [self setupIndexAndSelectTextWithPoint:point];
     }
+    
+    if (panGesture.state == UIGestureRecognizerStateEnded) {
+        [self hideIndexView];
+    }
 }
 
 - (void)tapGesture:(UIGestureRecognizer *)tapGesture {
     // 获取点击的位置
     CGPoint point = [tapGesture locationInView:tapGesture.view];
     [self setupIndexAndSelectTextWithPoint:point];
+    
+    if (tapGesture.state == UIGestureRecognizerStateEnded) {
+        [self hideIndexView];
+    }
 }
 
 #pragma mark - Private
@@ -62,7 +73,6 @@
 - (void)setupSubviews {
     for (NSInteger i = 0; i < _titles.count; i++) {
         UILabel *titleLabel = [[UILabel alloc] init];
-//        titleLabel.backgroundColor = [UIColor colorWithRed:arc4random() % 255 / 255.0 green:arc4random() % 255 / 255.0 blue:arc4random() % 255 / 255.0 alpha:1.0];
         titleLabel.text = _titles[i];
         titleLabel.textAlignment = NSTextAlignmentCenter;
         titleLabel.font = [UIFont systemFontOfSize:12];
@@ -72,6 +82,12 @@
     // 设置默认选中label
     UILabel *titleLabel = self.subviews[self.lastIndex];
     titleLabel.backgroundColor = [UIColor yellowColor];
+    
+    // 左侧显示section的视图
+    self.indexView = [[UIView alloc] init];
+    self.indexView.backgroundColor = [UIColor orangeColor];
+    self.indexView.hidden = YES;
+    [self addSubview:self.indexView];
 }
 
 /// 添加手势
@@ -115,5 +131,19 @@
     if (self.delegate && [self.delegate respondsToSelector:@selector(sectionIndexView:sectionTitle:atIndex:)]) {
         [self.delegate sectionIndexView:self sectionTitle:title atIndex:index];
     }
+    
+    // 修改indexView 的y
+    [self showIndexViewWithPoint:point];
+}
+
+- (void)showIndexViewWithPoint:(CGPoint)point {
+    CGPoint center = self.indexView.center;
+    center.y = point.y;
+    self.indexView.center = center;
+    self.indexView.hidden = NO;
+}
+
+- (void)hideIndexView {
+    self.indexView.hidden = YES;
 }
 @end

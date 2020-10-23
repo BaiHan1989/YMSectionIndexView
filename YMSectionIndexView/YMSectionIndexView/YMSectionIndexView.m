@@ -35,7 +35,10 @@
     CGFloat titleHeight = self.bounds.size.height / _titles.count;
     for (NSInteger i = 0; i < _titles.count; i++) {
         UILabel *titleLabel = self.subviews[i];
-        titleLabel.frame = CGRectMake(0, i * titleHeight, self.bounds.size.width, titleHeight);
+        titleLabel.frame = CGRectMake(0, i * titleHeight, titleHeight, titleHeight);
+        titleLabel.transform = CGAffineTransformMakeScale(0.8, 0.8);
+        titleLabel.layer.cornerRadius = titleHeight * 0.5;
+        titleLabel.layer.masksToBounds = YES;
     }
     
     self.indexView.frame = CGRectMake(-self.bounds.size.width - 50, 0, 50, 50);
@@ -75,6 +78,7 @@
     for (NSInteger i = 0; i < _titles.count; i++) {
         UILabel *titleLabel = [[UILabel alloc] init];
         titleLabel.text = _titles[i];
+        titleLabel.textColor = [UIColor blackColor];
         titleLabel.textAlignment = NSTextAlignmentCenter;
         titleLabel.font = [UIFont systemFontOfSize:12];
         [self addSubview:titleLabel];
@@ -82,12 +86,14 @@
 
     // 设置默认选中label
     UILabel *titleLabel = self.subviews[self.lastIndex];
-    titleLabel.backgroundColor = [UIColor yellowColor];
+    titleLabel.textColor = [UIColor whiteColor];
+    titleLabel.backgroundColor = [UIColor blackColor];
     
     // 左侧显示section的视图
     self.indexView = [[YMSectionTitleView alloc] init];
-    self.indexView.backgroundColor = [UIColor orangeColor];
+    self.indexView.backgroundColor = [UIColor clearColor];
     self.indexView.hidden = YES;
+    self.indexView.bgImageName = @"circle-solid";
     [self addSubview:self.indexView];
 }
 
@@ -120,12 +126,14 @@
     NSString *title = _titles[index];
     // 获取到选中的label
     UILabel *currentTitleLabel = self.subviews[index];
-    currentTitleLabel.backgroundColor = [UIColor yellowColor];
+    currentTitleLabel.backgroundColor = [UIColor blackColor];
+    currentTitleLabel.textColor = [UIColor whiteColor];
 
     if (self.lastIndex != index) {
         [self addFeedbackGenerator];
         UILabel *lastTitleLable = self.subviews[self.lastIndex];
         lastTitleLable.backgroundColor = [UIColor clearColor];
+        lastTitleLable.textColor = [UIColor blackColor];
         self.lastIndex = index;
     }
 

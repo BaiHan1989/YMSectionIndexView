@@ -263,7 +263,7 @@
     
     YMSectionIndexView *sectionIndexView = [[YMSectionIndexView alloc] initWithTitles:self.titles];
     sectionIndexView.delegate = self;
-    sectionIndexView.backgroundColor = [UIColor redColor];
+    sectionIndexView.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.8];
     sectionIndexView.frame = CGRectMake(self.view.bounds.size.width - 20, (self.view.bounds.size.height - 500) / 2, 20, 500);
     [self.view addSubview:sectionIndexView];
     

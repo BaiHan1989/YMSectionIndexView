@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		E169C5FF25428464005C504C /* YMSectionTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = E169C5FE25428464005C504C /* YMSectionTitleView.m */; };
+		E169C6032542AB57005C504C /* circle-solid@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E169C6012542AB57005C504C /* circle-solid@2x.png */; };
+		E169C6042542AB57005C504C /* circle-solid@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E169C6022542AB57005C504C /* circle-solid@3x.png */; };
 		E18882F32521D2B300EEC655 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E18882F22521D2B300EEC655 /* AppDelegate.m */; };
 		E18882F62521D2B300EEC655 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E18882F52521D2B300EEC655 /* SceneDelegate.m */; };
 		E18882F92521D2B300EEC655 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E18882F82521D2B300EEC655 /* ViewController.m */; };
@@ -21,6 +23,8 @@
 /* Begin PBXFileReference section */
 		E169C5FD25428464005C504C /* YMSectionTitleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YMSectionTitleView.h; sourceTree = "<group>"; };
 		E169C5FE25428464005C504C /* YMSectionTitleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YMSectionTitleView.m; sourceTree = "<group>"; };
+		E169C6012542AB57005C504C /* circle-solid@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "circle-solid@2x.png"; sourceTree = "<group>"; };
+		E169C6022542AB57005C504C /* circle-solid@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "circle-solid@3x.png"; sourceTree = "<group>"; };
 		E18882EE2521D2B300EEC655 /* YMSectionIndexView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YMSectionIndexView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E18882F12521D2B300EEC655 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E18882F22521D2B300EEC655 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -75,6 +79,8 @@
 				E18882F72521D2B300EEC655 /* ViewController.h */,
 				E18882F82521D2B300EEC655 /* ViewController.m */,
 				E18882FA2521D2B300EEC655 /* Main.storyboard */,
+				E169C6012542AB57005C504C /* circle-solid@2x.png */,
+				E169C6022542AB57005C504C /* circle-solid@3x.png */,
 				E18882FD2521D2B400EEC655 /* Assets.xcassets */,
 				E18882FF2521D2B400EEC655 /* LaunchScreen.storyboard */,
 				E18883022521D2B400EEC655 /* Info.plist */,
@@ -152,6 +158,8 @@
 			files = (
 				E18883012521D2B400EEC655 /* LaunchScreen.storyboard in Resources */,
 				E18882FE2521D2B400EEC655 /* Assets.xcassets in Resources */,
+				E169C6042542AB57005C504C /* circle-solid@3x.png in Resources */,
+				E169C6032542AB57005C504C /* circle-solid@2x.png in Resources */,
 				E18882FC2521D2B300EEC655 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

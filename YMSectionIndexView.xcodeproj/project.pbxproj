@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E169C5FF25428464005C504C /* YMSectionTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = E169C5FE25428464005C504C /* YMSectionTitleView.m */; };
 		E18882F32521D2B300EEC655 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E18882F22521D2B300EEC655 /* AppDelegate.m */; };
 		E18882F62521D2B300EEC655 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E18882F52521D2B300EEC655 /* SceneDelegate.m */; };
 		E18882F92521D2B300EEC655 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E18882F82521D2B300EEC655 /* ViewController.m */; };
@@ -18,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E169C5FD25428464005C504C /* YMSectionTitleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YMSectionTitleView.h; sourceTree = "<group>"; };
+		E169C5FE25428464005C504C /* YMSectionTitleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YMSectionTitleView.m; sourceTree = "<group>"; };
 		E18882EE2521D2B300EEC655 /* YMSectionIndexView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YMSectionIndexView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E18882F12521D2B300EEC655 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E18882F22521D2B300EEC655 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -85,6 +88,8 @@
 			children = (
 				E188830C2521D2E300EEC655 /* YMSectionIndexView.h */,
 				E188830D2521D2E300EEC655 /* YMSectionIndexView.m */,
+				E169C5FD25428464005C504C /* YMSectionTitleView.h */,
+				E169C5FE25428464005C504C /* YMSectionTitleView.m */,
 			);
 			path = YMSectionIndexView;
 			sourceTree = "<group>";
@@ -163,6 +168,7 @@
 				E18882F32521D2B300EEC655 /* AppDelegate.m in Sources */,
 				E18883042521D2B400EEC655 /* main.m in Sources */,
 				E18882F62521D2B300EEC655 /* SceneDelegate.m in Sources */,
+				E169C5FF25428464005C504C /* YMSectionTitleView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

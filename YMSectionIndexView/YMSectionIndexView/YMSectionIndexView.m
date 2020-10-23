@@ -6,12 +6,13 @@
 //
 
 #import "YMSectionIndexView.h"
+#import "YMSectionTitleView.h"
 
 @interface YMSectionIndexView ()
 
 @property (nonatomic, strong) NSArray *titles;
 @property (nonatomic, assign) NSInteger lastIndex; //!< 上次选中的Index
-@property (nonatomic, strong) UIView *indexView;
+@property (nonatomic, strong) YMSectionTitleView *indexView;
 
 @end
 
@@ -84,7 +85,7 @@
     titleLabel.backgroundColor = [UIColor yellowColor];
     
     // 左侧显示section的视图
-    self.indexView = [[UIView alloc] init];
+    self.indexView = [[YMSectionTitleView alloc] init];
     self.indexView.backgroundColor = [UIColor orangeColor];
     self.indexView.hidden = YES;
     [self addSubview:self.indexView];
@@ -132,15 +133,16 @@
         [self.delegate sectionIndexView:self sectionTitle:title atIndex:index];
     }
     
-    // 修改indexView 的y
-    [self showIndexViewWithPoint:point];
+    // 修改indexView 的y 
+    [self showIndexViewWithPoint:point title:title];
 }
 
-- (void)showIndexViewWithPoint:(CGPoint)point {
+- (void)showIndexViewWithPoint:(CGPoint)point title:(NSString *)title {
     CGPoint center = self.indexView.center;
     center.y = point.y;
     self.indexView.center = center;
     self.indexView.hidden = NO;
+    self.indexView.sectionTitle = title;
 }
 
 - (void)hideIndexView {

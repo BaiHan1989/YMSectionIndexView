@@ -133,7 +133,7 @@
         [self.delegate sectionIndexView:self sectionTitle:title atIndex:index];
     }
     
-    // 修改indexView 的y 
+    // 修改indexView 的y
     [self showIndexViewWithPoint:point title:title];
 }
 
@@ -143,9 +143,15 @@
     self.indexView.center = center;
     self.indexView.hidden = NO;
     self.indexView.sectionTitle = title;
+    self.indexView.alpha = 1;
 }
 
 - (void)hideIndexView {
-    self.indexView.hidden = YES;
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        self.indexView.alpha = 0;
+    } completion:^(BOOL finished) {
+        self.indexView.hidden = YES;
+    }];
 }
 @end
